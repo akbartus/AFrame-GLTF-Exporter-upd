@@ -17,4 +17,4 @@ To see the project at work just copy the repository to your local server and exp
 The project is powered by AFrame.
 
 ### **Demo**
-To see the application at work: [Demo application](https://scratch.mit.edu/projects/337922529/)
+To see the application at work: [Demo application](https://gltf-exporter.glitch.me/)
