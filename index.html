@@ -1,0 +1,115 @@
+<head>
+    <title>A-FrameGLTF Exporter (updated ver.)</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="js/aframe-gltf-exporter.js"></script>
+    <script src="js/gltf-exporter-component.js"></script>
+    <script src="https://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a-scene gltf-exporter>
+        <a-assets>
+            <a-asset-item id="fish" src="3d/fish.glb"></a-asset-item>
+            <img id="img1" src="img/scene.jpg">
+            <img id="img2" src="img/html.jpg">
+            <img id="img3" src="img/primitive.jpg">
+            <img id="img4" src="img/primitiveBinary.jpg">
+            <img id="img5" src="img/two.jpg">
+            <img id="img6" src="img/3dModel.jpg">
+        </a-assets>
+
+
+        <a-entity position="0 0 0" cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .navButton">
+        </a-entity>
+
+
+        <a-entity id="export-scene" class="navButton" geometry="primitive: plane;"
+            material="src: #img1; transparent: true; opacity: 1; alpha-test: 0.5" position="-2.5 2.5 -2"
+            scale="0.5 0.5 0.5"></a-entity>
+
+        <a-entity id="export-html" class="navButton" geometry="primitive: plane;"
+            material="src: #img2; transparent: true; opacity: 1; alpha-test: 0.5" position="-1.5 2.5 -2"
+            scale="0.5 0.5 0.5"></a-entity>
+
+        <a-entity id="primitive" class="navButton" geometry="primitive: plane;"
+            material="src: #img3; transparent: true; opacity: 1; alpha-test: 0.5" position="-0.5 2.5 -2"
+            scale="0.5 0.5 0.5"></a-entity>
+
+        <a-entity id="primitiveBinary" class="navButton" geometry="primitive: plane;"
+            material="src: #img4; transparent: true; opacity: 1; alpha-test: 0.5" position="0.5 2.5 -2"
+            scale="0.5 0.5 0.5"></a-entity>
+        
+            <a-entity id="exportTwo" class="navButton" geometry="primitive: plane;"
+            material="src: #img5; transparent: true; opacity: 1; alpha-test: 0.5" position="1.5 2.5 -2"
+            scale="0.5 0.5 0.5"></a-entity>
+        
+            <a-entity id="export3d" class="navButton" geometry="primitive: plane;"
+            material="src: #img6; transparent: true; opacity: 1; alpha-test: 0.5" position="2.5 2.5 -2"
+            scale="0.5 0.5 0.5"></a-entity>
+
+
+
+        <a-entity id="embeddedHTML" width="4" height="4" side="double" position="0 1 -2" htmlembed>
+            <div class="notepad">
+
+                <div id="content" class="paper" contenteditable="true">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis neque sit aspernatur laudantium
+                    unde odio aut reprehenderit ea autem quidem! Ducimus et non natus consequatur quae expedita omnis,
+                    quis sapiente.
+                </div>
+            </div>
+        </a-entity>
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-cylinder id="cylinder" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+
+        <a-entity id="model" gltf-model="#fish" rotation="0 90 0" position="2 1 -2" scale="0.02 0.02 0.02">
+        </a-entity>
+    </a-scene>
+
+
+    <script>
+        var embeddedHTML = document.querySelector("#embeddedHTML");
+        var cylinder = document.getElementById("cylinder");
+        var box = document.querySelector("a-box");
+
+
+        // Export GLTF (GLB). This needs to be present, always!
+        function exportGLTF(input, options) {
+            AFRAME.scenes[0].systems['gltf-exporter'].export(input, options);
+        }
+
+
+        // Export whole scene
+        document.getElementById("export-scene").addEventListener("click", function () {
+            exportGLTF();
+        });
+
+        // Export HTML containing entity
+        document.getElementById("export-html").addEventListener("click", function () {
+            exportGLTF(embeddedHTML);
+        });
+
+        // Export primitive as GLTF
+        document.getElementById("primitive").addEventListener("click", function () {
+            exportGLTF(cylinder);
+        });
+
+        // Export primitive as GLB
+        document.getElementById("primitiveBinary").addEventListener("click", function () {
+            exportGLTF(box, { binary: true });
+        });
+
+        // Export more than one entity
+        document.getElementById('exportTwo').addEventListener('click', function () {
+            exportGLTF([document.querySelector("a-box"), document.getElementById("cylinder")]);
+        });
+
+        // Export 3d model
+        document.getElementById('export3d').addEventListener('click', function () {
+            exportGLTF(document.querySelector("#model"));
+        });
+    </script>
+</body>
