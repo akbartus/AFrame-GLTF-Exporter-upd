@@ -1,16 +1,8 @@
-# AFrame GLTF Exporter Component (updated version)
+# AFrame GLTF Exporter (updated version)
 <img alt="Screenshot" src="img/screenshot.jpg" width="500">
 
 ### **Description / Rationale**
-This is a small project demonstrating the porting of the Scratch quiz app to .html web page and .apk application (Android). Interactive quiz developed within the framework of Understanding Virtual Reality course. There are tests developed for five topics:
-- What is virtual reality? - 17 questions;
-- VR history and questions of reality - 20 questions;
-- Immersion, presence and mind realities - 17 questions;
-- Subject/object; perceptual models - 15 questions;
-- Perceptual modalities - 10 questions.
-
-There is unlimited number of tries. Every correct answer gives by 1 point. At the end of each section/topic, the score is shown.
-The repository also contains questions with answers in a spreadsheet form.
+This is a small project, which demonstrates the working, updated version AFrame GLTF Exporter Component, created by <a href="https://github.com/fernandojsg/aframe-gltf-exporter-component">Fernando Serrano</a>.
 
 ### **Instructions**
 To see the project at work just copy the repository and do the following:
